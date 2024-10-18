@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Main {
 
-    static double balance;
+    private static double balance;
 
     public static void main(String[] args) {
-        balance = validateAmount(balance, getAmount());
+        validateAmount(getBalance(), getAmount());
     }
 
     private static double getBalance() {
@@ -16,18 +16,18 @@ public class Main {
 
     private static double getAmount() {
         System.out.printf("Balance is USD %.2f.%n" +
-                "Enter purchase amount, USD: ", balance);
+                "Enter purchase amount, USD: ", getBalance());
         Scanner scanner = new Scanner(System.in);
         return scanner.nextDouble();
     }
 
     // Метод валідації наявних коштів
     private static void validateAmount(double balance, double withdrawal) {
-        if (withdrawal > ) {
+        if (withdrawal > balance) {
             try {
-                throw new ("Insufficient funds!");
+                throw new FundsException("Insufficient funds!");
             } catch (FundsException ex) {
-                System.out.println(.getMessage());
+                System.out.println(ex.getMessage());
             }
         } else {
             balance = getBalance(balance, withdrawal);
@@ -39,6 +39,6 @@ public class Main {
     // Метод розрахунку наявних коштів на рахунку
     // після зняття певної суми коштів
     private static double getBalance(double balance, double withdrawal) {
-        return balance - ;
+        return balance - withdrawal;
     }
 }
